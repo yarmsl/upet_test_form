@@ -47,10 +47,24 @@ const theme = createMuiTheme({
 			xl: 1920
 		},
 	},
+	palette: {
+		primary: {
+			main: '#02E0B1',
+		},
+		secondary: {
+			main: '#ffffff',
+		},
+		error: {
+			main: '#F44336',
+		},
+		background: {
+			default: '#fff',
+		},
+	},
 	typography: {
 		fontFamily: 'Rawline'
 	},
-	shadows: [ //вызываются theme.spacing[порядковый номер в этом массиве]
+	shadows: [
 		'none',
 		'none',
 		'none',
@@ -59,7 +73,7 @@ const theme = createMuiTheme({
 		'none',
 		'none',
 		'none',
-		'none', //используется выпадашки из селектов TextField
+		'none',
 		'none',
 		'none',
 		'none',

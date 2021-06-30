@@ -1,4 +1,4 @@
-import { Container } from '@material-ui/core';
+import { Container, makeStyles } from '@material-ui/core';
 import React from 'react';
 import Header from './Header';
 
@@ -6,9 +6,19 @@ type Props = {
 	children?: React.ReactNode;
 };
 
-const MainLayout = ({ children }: Props): JSX.Element => {
+const useStyles = makeStyles(() => ({
+	root: {
+		paddingLeft: '24px',
+		paddingRight: '24px',
+	},
+}));
+
+const MainLayout = ({ children }: Props): React.ReactElement => {
+
+	const classes = useStyles();
+
 	return (
-		<Container>
+		<Container className={classes.root}>
 			<>
 				<Header />
 				{children}

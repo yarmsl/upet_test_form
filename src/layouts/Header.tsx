@@ -1,24 +1,23 @@
 import React from 'react';
-import { AppBar, Icon, makeStyles } from '@material-ui/core';
+import { AppBar, makeStyles } from '@material-ui/core';
 import Logo from '../UI/icons/Logo';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 	header: {
-		height: '78px'
-	},
-	logo: {
-		width: '200px',
 		height: '78px',
-	}
+		paddingTop: '24px',
+		paddingBottom: '24px',
+		alignItems: 'flex-start',
+	},
 }));
 
-const Header = (): JSX.Element => {
+const Header = (): React.ReactElement => {
 
 	const classes = useStyles();
 
 	return (
 		<AppBar color='transparent' position='sticky' className={classes.header}>
-			<Icon className={classes.logo}><Logo /></Icon>
+			<Logo />
 		</AppBar>
 	);
 };

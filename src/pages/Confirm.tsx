@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Confirm = (): JSX.Element => {
+const Confirm = (): React.ReactElement => {
 	return (
 		<div>
 			<h1>Confirm</h1>
