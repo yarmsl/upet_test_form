@@ -11,6 +11,7 @@ const Pass = (): React.ReactElement => {
 	const classes = useStyles();
 	const methods = useFormContext();
 
+
 	return (
 		<Controller
 			name="password"
