@@ -1,10 +1,11 @@
 import React from 'react';
+import MainLayout from '../layouts/MainLayout';
 
 const Form = (): JSX.Element => {
 	return (
-		<div>
+		<MainLayout>
 			<h1>Form</h1>
-		</div>
+		</MainLayout>
 	);
 };
 
