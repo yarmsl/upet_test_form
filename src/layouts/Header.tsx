@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, makeStyles } from '@material-ui/core';
+import { AppBar, Icon, makeStyles } from '@material-ui/core';
 import Logo from '../UI/icons/Logo';
 
 const useStyles = makeStyles((theme) => ({
@@ -7,7 +7,8 @@ const useStyles = makeStyles((theme) => ({
 		height: '78px'
 	},
 	logo: {
-
+		width: '200px',
+		height: '78px',
 	}
 }));
 
@@ -17,7 +18,7 @@ const Header = (): JSX.Element => {
 
 	return (
 		<AppBar color='transparent' position='sticky' className={classes.header}>
-			<Logo />
+			<Icon className={classes.logo}><Logo /></Icon>
 		</AppBar>
 	);
 };

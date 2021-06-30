@@ -50,6 +50,31 @@ const theme = createMuiTheme({
 	typography: {
 		fontFamily: 'Rawline'
 	},
+	shadows: [ //вызываются theme.spacing[порядковый номер в этом массиве]
+		'none',
+		'none',
+		'none',
+		'none',
+		'none',
+		'none',
+		'none',
+		'none',
+		'none', //используется выпадашки из селектов TextField
+		'none',
+		'none',
+		'none',
+		'none',
+		'none',
+		'none',
+		'none',
+		'none',
+		'none',
+		'none',
+		'none',
+	],
+	shape: {
+		borderRadius: 0,
+	},
 	overrides: {
 		MuiCssBaseline: {
 			'@global': {

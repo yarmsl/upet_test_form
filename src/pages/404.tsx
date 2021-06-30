@@ -1,10 +1,11 @@
 import React from 'react';
+import MainLayout from '../layouts/MainLayout';
 
 const NotFound = (): JSX.Element => {
 	return (
-		<div>
+		<MainLayout>
 			<h1>404</h1>
-		</div>
+		</MainLayout>
 	);
 };
 
