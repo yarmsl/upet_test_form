@@ -12,10 +12,10 @@ ReactDOM.render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
-			<Router>
+			<Router basename={process.env.PUBLIC_URL}>
 				<Switch>
 					<Route exact path='/' component={Form} />
-					<Route path='/confirm' component={Confirm} />
+					<Route exact path='/confirm' component={Confirm} />
 					<Route component={NotFound} />
 				</Switch>
 			</Router>
