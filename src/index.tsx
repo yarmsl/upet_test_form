@@ -15,7 +15,7 @@ ReactDOM.render(
 			<Router basename={process.env.PUBLIC_URL}>
 				<Switch>
 					<Route exact path='/' component={Form} />
-					<Route exact path='/confirm' component={Confirm} />
+					<Route exact path={`${process.env.PUBLIC_URL}/confirm`} component={Confirm} />
 					<Route component={NotFound} />
 				</Switch>
 			</Router>
