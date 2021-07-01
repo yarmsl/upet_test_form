@@ -16,7 +16,7 @@ const Header = (): React.ReactElement => {
 	const classes = useStyles();
 
 	return (
-		<AppBar color='transparent' position='sticky' className={classes.header}>
+		<AppBar color='transparent' position='static' className={classes.header}>
 			<Logo />
 		</AppBar>
 	);

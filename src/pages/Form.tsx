@@ -24,6 +24,7 @@ const useStyles = makeStyles(() => ({
 		marginTop: '12px',
 	},
 	name: {
+		width: '100%',
 		display: 'flex',
 		flexDirection: 'row',
 	}

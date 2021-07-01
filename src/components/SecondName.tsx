@@ -1,6 +1,7 @@
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { makeStyles, TextField } from '@material-ui/core';
+import { capitalFirstLetter } from '../lib/services';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -24,7 +25,7 @@ const SecondName = (): React.ReactElement => {
 					fullWidth
 					autoComplete="on"
 					value={value}
-					onChange={onChange}
+					onChange={e => onChange(capitalFirstLetter(e))}
 					error={!!error} helperText={error ? error.message : ' '} />
 			)}
 			rules={{ required: 'Enter your second name' }}
