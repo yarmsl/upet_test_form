@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/upet_test_form/static/js/main.c3b60a58.chunk.js",
+    "main.js.map": "/upet_test_form/static/js/main.c3b60a58.chunk.js.map",
+    "runtime-main.js": "/upet_test_form/static/js/runtime-main.f3d0107b.js",
+    "runtime-main.js.map": "/upet_test_form/static/js/runtime-main.f3d0107b.js.map",
+    "static/js/2.155b36fa.chunk.js": "/upet_test_form/static/js/2.155b36fa.chunk.js",
+    "static/js/2.155b36fa.chunk.js.map": "/upet_test_form/static/js/2.155b36fa.chunk.js.map",
+    "index.html": "/upet_test_form/index.html",
+    "static/js/2.155b36fa.chunk.js.LICENSE.txt": "/upet_test_form/static/js/2.155b36fa.chunk.js.LICENSE.txt",
+    "static/media/rawline-400.123962ac.woff2": "/upet_test_form/static/media/rawline-400.123962ac.woff2",
+    "static/media/rawline-500.31f921b7.woff2": "/upet_test_form/static/media/rawline-500.31f921b7.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f3d0107b.js",
+    "static/js/2.155b36fa.chunk.js",
+    "static/js/main.c3b60a58.chunk.js"
+  ]
+}
