@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MainLayout from '../layouts/MainLayout';
 import { Box, Button, makeStyles } from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
 import FirstName from '../components/FirstName';
-import SecondName from '../components/SecondName';
+import LastName from '../components/LastName';
 import PhoneNumber from '../components/PhoneNumber';
 import Email from '../components/Email';
 import Pass from '../components/Pass';
@@ -18,22 +18,33 @@ interface dataForm {
 
 const useStyles = makeStyles(() => ({
 	form: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
 		marginTop: '12px',
+		display: 'grid',
+		gridTemplateColumns: 'repeat(2, 1fr)',
+		gridTemplateRows: 'repeat(5, auto)',
+		gridColumnGap: '16px',
+		gridRowGap: '15px',
 	},
-	name: {
-		width: '100%',
-		display: 'flex',
-		flexDirection: 'row',
+	submit: {
+		gridArea: '5 / 1 / 6 / 3',
 	}
 }));
 
 const Form = (): React.ReactElement => {
-
+	const [disabled, setDisabled] = useState(true);
 	const methods = useForm();
 	const classes = useStyles();
+
+	useEffect(() => {
+		setDisabled(
+			!methods.watch('firstName') ||
+			!methods.watch('lastName') ||
+			!methods.watch('phoneNumber') ||
+			!methods.watch('email') ||
+			!methods.watch('password')
+		);
+	}, [methods.watch()]);
+
 	const onSubmit = (data: dataForm) => {
 		console.log(data);
 	};
@@ -43,14 +54,20 @@ const Form = (): React.ReactElement => {
 			<FormProvider {...methods} >
 				<form onSubmit={methods.handleSubmit(onSubmit)}>
 					<Box className={classes.form}>
-						<Box className={classes.name}>
-							<FirstName />
-							<SecondName />
-						</Box>
+						<FirstName />
+						<LastName />
 						<PhoneNumber />
 						<Email />
 						<Pass />
-						<Button type='submit' variant='contained' color='primary' fullWidth>Next</Button>
+						<Button className={classes.submit}
+							type='submit'
+							variant='contained'
+							color='primary'
+							fullWidth
+							size="large"
+							disabled={disabled}>
+							Next
+						</Button>
 					</Box>
 				</form>
 			</FormProvider>

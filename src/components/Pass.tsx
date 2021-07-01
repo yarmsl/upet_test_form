@@ -2,8 +2,10 @@ import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { makeStyles, TextField } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-
+const useStyles = makeStyles(() => ({
+	root: {
+		gridArea: '4 / 1 / 5 / 3',
+	}
 }));
 
 const Pass = (): React.ReactElement => {
@@ -19,14 +21,15 @@ const Pass = (): React.ReactElement => {
 			defaultValue=''
 			render={({ field: { onChange, value }, fieldState: { error } }) => (
 				<TextField
+					className={classes.root}
 					label='Password'
 					variant='outlined'
-					type="text"
+					type="password"
 					fullWidth
 					autoComplete="on"
 					value={value}
 					onChange={onChange}
-					error={!!error} helperText={error ? error.message : ' '} />
+					error={!!error} helperText={error ? error.message : ''} />
 			)}
 			rules={{ required: 'Enter password' }}
 		/>

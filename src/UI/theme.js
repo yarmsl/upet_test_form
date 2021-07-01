@@ -62,7 +62,7 @@ const theme = createMuiTheme({
 		},
 	},
 	typography: {
-		fontFamily: 'Rawline'
+		fontFamily: 'Rawline',
 	},
 	shadows: [
 		'none',
@@ -87,7 +87,7 @@ const theme = createMuiTheme({
 		'none',
 	],
 	shape: {
-		borderRadius: 0,
+		borderRadius: 2,
 	},
 	overrides: {
 		MuiCssBaseline: {
@@ -95,6 +95,61 @@ const theme = createMuiTheme({
 				'@font-face': [rawline_regular, rawline_semiBold],
 			},
 		},
+		MuiButton: {
+			label: {
+				color: '#fff',
+			},
+			containedSizeLarge: {
+				height: '60px',
+			},
+			contained: {
+				'&$disabled': {
+					backgroundColor: '#02E0B1',
+					color: '#fff',
+					opacity: '.6',
+				}
+			}
+		},
+		MuiOutlinedInput: {
+			root: {
+				'&$focused $notchedOutline': {
+					borderColor: '#DFDFDF',
+					borderWidth: '1px',
+				}
+			},
+			notchedOutline: {
+				borderColor: '#DFDFDF',
+			},
+			input: {
+				padding: '25px 12px 16px',
+			},
+		},
+		MuiInputLabel: {
+			outlined: {
+				transform: 'translate(12px, 21px) scale(1)',
+				'&$shrink': {
+					transform: 'translate(12px, 9px) scale(0.75)',
+				}
+			},
+			shrink: {
+				transform: 'translate(12px, 0px) scale(0.75)',
+			},
+		},
+		MuiFormHelperText: {
+			root: {
+				marginTop: '0px',
+				lineHeight: '15px',
+			},
+			contained: {
+				marginLeft: '0px',
+				marginRight: '0px',
+			}
+		},
+		PrivateNotchedOutline: {
+			legendLabelled: {
+				maxWidth: '0px !important'
+			}
+		}
 	},
 });
 

@@ -3,8 +3,10 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { makeStyles, TextField } from '@material-ui/core';
 import { capitalFirstLetter } from '../lib/services';
 
-const useStyles = makeStyles((theme) => ({
-
+const useStyles = makeStyles(() => ({
+	root: {
+		gridArea: '1 / 1 / 2 / 2',
+	}
 }));
 
 const FirstName = (): React.ReactElement => {
@@ -19,6 +21,7 @@ const FirstName = (): React.ReactElement => {
 			defaultValue=''
 			render={({ field: { onChange, value }, fieldState: { error } }) => (
 				<TextField
+					className={classes.root}
 					label='First Name'
 					variant='outlined'
 					type="text"
@@ -26,7 +29,7 @@ const FirstName = (): React.ReactElement => {
 					autoComplete="on"
 					value={value}
 					onChange={e => onChange(capitalFirstLetter(e))}
-					error={!!error} helperText={error ? error.message : ' '} />
+					error={!!error} helperText={error ? error.message : ''} />
 			)}
 			rules={{ required: 'Enter your first name' }}
 		/>

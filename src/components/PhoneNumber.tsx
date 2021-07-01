@@ -2,8 +2,10 @@ import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { makeStyles, TextField } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-
+const useStyles = makeStyles(() => ({
+	root: {
+		gridArea: '2 / 1 / 3 / 3',
+	}
 }));
 
 const PhoneNumber = (): React.ReactElement => {
@@ -18,6 +20,7 @@ const PhoneNumber = (): React.ReactElement => {
 			defaultValue=''
 			render={({ field: { onChange, value }, fieldState: { error } }) => (
 				<TextField
+					className={classes.root}
 					label='Phone number'
 					variant='outlined'
 					type="text"
@@ -25,7 +28,7 @@ const PhoneNumber = (): React.ReactElement => {
 					autoComplete="on"
 					value={value}
 					onChange={onChange}
-					error={!!error} helperText={error ? error.message : ' '} />
+					error={!!error} helperText={error ? error.message : ''} />
 			)}
 			rules={{ required: 'Enter your phone number' }}
 		/>
