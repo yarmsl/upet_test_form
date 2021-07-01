@@ -7,7 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './UI/theme';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
+console.log(process.env.PUBLIC_URL);
 ReactDOM.render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
@@ -15,7 +15,7 @@ ReactDOM.render(
 			<Router basename={process.env.PUBLIC_URL}>
 				<Switch>
 					<Route exact path='/' component={Form} />
-					<Route exact path={`${process.env.PUBLIC_URL}/confirm`} component={Confirm} />
+					<Route exact path='/confirm' component={Confirm} />
 					<Route component={NotFound} />
 				</Switch>
 			</Router>
