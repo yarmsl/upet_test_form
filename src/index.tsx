@@ -12,7 +12,7 @@ ReactDOM.render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
-			<Router basename={process.env.PUBLIC_URL}>
+			<Router basename={'https://yarmsl.github.io/upet_test_form/'}>
 				<Switch>
 					<Route exact path='/' component={Form} />
 					<Route exact path='/confirm' component={Confirm} />
