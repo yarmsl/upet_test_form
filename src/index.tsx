@@ -12,7 +12,7 @@ ReactDOM.render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
-			<Router>
+			<Router basename='/'>
 				<Switch>
 					<Route exact path='/' component={Form} />
 					<Route exact path='/confirm' component={Confirm} />
