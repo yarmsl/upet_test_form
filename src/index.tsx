@@ -6,13 +6,13 @@ import NotFound from './pages/404';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './UI/theme';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-console.log(process.env.PUBLIC_URL);
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+
 ReactDOM.render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
-			<Router basename={process.env.PUBLIC_URL}>
+			<Router basename='/'>
 				<Switch>
 					<Route exact path='/' component={Form} />
 					<Route exact path='/confirm' component={Confirm} />
