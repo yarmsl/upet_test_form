@@ -82,7 +82,7 @@ const PhoneNumber = (): React.ReactElement => {
 							className={classes.root}
 							label='Phone number'
 							variant='outlined'
-							type="text"
+							type="tel"
 							fullWidth
 							autoComplete="on"
 							value={value}
