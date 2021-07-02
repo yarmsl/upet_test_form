@@ -115,7 +115,10 @@ const theme = createMuiTheme({
 				'&$focused $notchedOutline': {
 					borderColor: '#DFDFDF',
 					borderWidth: '1px',
-				}
+				},
+				'&:hover $notchedOutline': {
+					borderColor: '#DFDFDF !important',
+				},
 			},
 			notchedOutline: {
 				borderColor: '#DFDFDF',
