@@ -79,6 +79,9 @@ const PhoneNumber = (): React.ReactElement => {
 					defaultValue=''
 					render={({ field: { onChange, value }, fieldState: { error } }) => (
 						<TextField
+							inputProps={{
+								inputMode: 'decimal',
+							}}
 							className={classes.root}
 							label='Phone number'
 							variant='outlined'
