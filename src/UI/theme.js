@@ -96,9 +96,9 @@ const theme = createMuiTheme({
 			},
 		},
 		MuiButton: {
-			label: {
-				color: '#fff',
-			},
+			// label: {
+			// 	color: '#fff',
+			// },
 			containedSizeLarge: {
 				height: '60px',
 			},

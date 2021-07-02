@@ -26,6 +26,10 @@ const useStyles = makeStyles(() => ({
 		gridRowGap: '15px',
 	},
 	submit: {
+		'& span': {
+			color: '#fff',
+		},
+		marginTop: '21px',
 		gridArea: '5 / 1 / 6 / 3',
 	}
 }));
