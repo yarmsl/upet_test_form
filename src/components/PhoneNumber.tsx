@@ -18,10 +18,12 @@ const useStyles = makeStyles(() => ({
 	},
 	flagIcon: {
 		width: '51px',
+		height: '51px',
 		position: 'absolute',
 		zIndex: 1000,
 		top: '0px',
 		bottom: '0px',
+		margin: 'auto 0',
 		left: '7px',
 	}
 }));
