@@ -50,14 +50,10 @@ const useStyles = makeStyles(() => ({
 	}
 }));
 
-
-
 const countries = [
 	{ id: 1, brevis: 'USA', icon: <USAflagIcon />, code: '+1', title: 'United States', phoneformat: phoneFormatUSA, count: 14 },
 	{ id: 2, brevis: 'AUS', icon: <AUSflagIcon />, code: '+61', title: 'Australia', phoneformat: phoneFormatAUS, count: 12 }
 ];
-
-
 
 const PhoneNumber = (): React.ReactElement => {
 	const [country, setCountry] = useState(1);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, makeStyles } from '@material-ui/core';
 import Logo from '../UI/icons/Logo';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
 	header: {
@@ -8,7 +9,10 @@ const useStyles = makeStyles(() => ({
 		paddingTop: '24px',
 		paddingBottom: '24px',
 		alignItems: 'flex-start',
-	},
+		'& svg': {
+			height: '30px',
+		}
+	}
 }));
 
 const Header = (): React.ReactElement => {
@@ -17,7 +21,9 @@ const Header = (): React.ReactElement => {
 
 	return (
 		<AppBar color='transparent' position='static' className={classes.header}>
-			<Logo />
+			<Link to='/'>
+				<Logo />
+			</Link>
 		</AppBar>
 	);
 };

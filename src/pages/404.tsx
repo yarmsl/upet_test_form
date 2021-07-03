@@ -1,6 +1,7 @@
 import React from 'react';
 import MainLayout from '../layouts/MainLayout';
 import { Box, Button, makeStyles, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
 	notfound: {
@@ -8,7 +9,8 @@ const useStyles = makeStyles(() => ({
 		flexDirection: 'column',
 		alignItems: 'center',
 		'&>*': {
-			margin: '8px 0'
+			margin: '8px 0',
+			textDecoration: 'none'
 		}
 	}
 }));
@@ -22,7 +24,7 @@ const NotFound = (): React.ReactElement => {
 			<Box className={classes.notfound}>
 				<Typography variant='h1'>404</Typography>
 				<Typography variant='body2'>Oops, there is no such page yet</Typography>
-				<Button href='/' variant='outlined' color='primary'>go back to safety</Button>
+				<Link to='/'><Button variant='outlined' color='primary'>go back to safety</Button></Link>
 			</Box>
 		</MainLayout>
 	);
