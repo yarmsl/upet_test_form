@@ -166,12 +166,6 @@ const theme = createMuiTheme({
 				maxWidth: '0px !important'
 			}
 		},
-		// MuiBackdrop: {
-		// 	root: {
-		// 		zIndex: 2000,
-		// 		backgroundColor: 'rgba(255, 255, 255, 0.85)',
-		// 	},
-		// }
 	},
 });
 
