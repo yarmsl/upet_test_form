@@ -1,5 +1,9 @@
 # uPet Task
 
+you can watch the task on github pages
+
+### [https://yarmsl.github.io/upet_test_form/](https://yarmsl.github.io/upet_test_form/)
+
 In the project directory, you can run:
 
 ### `npm i`
