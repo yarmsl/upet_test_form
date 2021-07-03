@@ -63,8 +63,24 @@ const theme = createMuiTheme({
 	},
 	typography: {
 		fontFamily: 'Rawline',
+		h2: {
+			fontSize: '22px',
+			lineHeight: '29px',
+			fontWeight: 400,
+		},
+		body2: {
+			fontSize: '15px',
+			lineHeight: '20.76px',
+			fontWeight: 400,
+			color: 'rgba(0, 0, 0, 0.54)'
+		}
 	},
 	shadows: [
+		'none',
+		'none',
+		'none',
+		'none',
+		'none',
 		'none',
 		'none',
 		'none',
@@ -96,9 +112,6 @@ const theme = createMuiTheme({
 			},
 		},
 		MuiButton: {
-			// label: {
-			// 	color: '#fff',
-			// },
 			containedSizeLarge: {
 				height: '60px',
 			},
@@ -117,7 +130,7 @@ const theme = createMuiTheme({
 					borderWidth: '1px',
 				},
 				'&:hover $notchedOutline': {
-					borderColor: '#DFDFDF !important',
+					borderColor: '#DFDFDF',
 				},
 			},
 			notchedOutline: {
@@ -152,7 +165,13 @@ const theme = createMuiTheme({
 			legendLabelled: {
 				maxWidth: '0px !important'
 			}
-		}
+		},
+		// MuiBackdrop: {
+		// 	root: {
+		// 		zIndex: 2000,
+		// 		backgroundColor: 'rgba(255, 255, 255, 0.85)',
+		// 	},
+		// }
 	},
 });
 

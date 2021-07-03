@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { makeStyles, TextField } from '@material-ui/core';
 
@@ -13,6 +13,11 @@ const Pass = (): React.ReactElement => {
 	const classes = useStyles();
 	const methods = useFormContext();
 
+	useEffect(() => {
+		if (methods.watch('password')?.length > 0) {
+			methods.trigger('password');
+		}
+	}, [methods.watch('password')]);
 
 	return (
 		<Controller
@@ -31,7 +36,13 @@ const Pass = (): React.ReactElement => {
 					onChange={onChange}
 					error={!!error} helperText={error ? error.message : ''} />
 			)}
-			rules={{ required: 'Enter password' }}
+			rules={{
+				required: 'Enter password',
+				pattern: {
+					value: /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g,
+					message: 'Oops! You need a password longer than 8 characters with numbers and letters.'
+				}
+			}}
 		/>
 	);
 };

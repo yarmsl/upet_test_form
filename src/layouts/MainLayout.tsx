@@ -1,6 +1,7 @@
 import { Container, makeStyles } from '@material-ui/core';
 import React from 'react';
 import Header from './Header';
+import { Link } from 'react-router-dom';
 
 type Props = {
 	children?: React.ReactNode;
@@ -20,7 +21,7 @@ const MainLayout = ({ children }: Props): React.ReactElement => {
 	return (
 		<Container className={classes.root}>
 			<>
-				<Header />
+				<Link to="/"><Header /></Link>
 				{children}
 			</>
 		</Container>

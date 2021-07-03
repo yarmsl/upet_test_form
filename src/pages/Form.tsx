@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
-import { Box, Button, makeStyles } from '@material-ui/core';
+import { Backdrop, Box, Button, makeStyles } from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
 import FirstName from '../components/FirstName';
 import LastName from '../components/LastName';
 import PhoneNumber from '../components/PhoneNumber';
 import Email from '../components/Email';
 import Pass from '../components/Pass';
+import Loader from '../UI/icons/Loader';
+import axios from 'axios';
 
 interface dataForm {
 	firstName: string;
@@ -31,13 +34,19 @@ const useStyles = makeStyles(() => ({
 		},
 		marginTop: '21px',
 		gridArea: '5 / 1 / 6 / 3',
+	},
+	backdr: {
+		backgroundColor: 'rgba(255, 255, 255, 0.85)',
+		zIndex: 2000,
 	}
 }));
 
 const Form = (): React.ReactElement => {
 	const [disabled, setDisabled] = useState(true);
+	const [backdrop, setBackdrop] = useState(false);
 	const methods = useForm();
 	const classes = useStyles();
+	const history = useHistory();
 
 	useEffect(() => {
 		setDisabled(
@@ -45,37 +54,52 @@ const Form = (): React.ReactElement => {
 			!methods.watch('lastName') ||
 			!methods.watch('phoneNumber') ||
 			!methods.watch('email') ||
-			!methods.watch('password')
+			!methods.watch('password') ||
+			!!methods.formState.errors?.phoneNumber ||
+			!!methods.formState.errors?.email ||
+			!!methods.formState.errors?.password
 		);
 	}, [methods.watch()]);
 
 	const onSubmit = (data: dataForm) => {
-		console.log(data);
+		setBackdrop(true);
+		axios.post('https://60e02dae6b689e001788c959.mockapi.io/api/request/appeals', data)
+			.then((res) => {
+				if (res.statusText === 'Created') {
+					history.push('/confirm');
+				}
+			})
+			.catch(err => console.error(err));
 	};
 
 	return (
-		<MainLayout>
-			<FormProvider {...methods} >
-				<form onSubmit={methods.handleSubmit(onSubmit)}>
-					<Box className={classes.form}>
-						<FirstName />
-						<LastName />
-						<PhoneNumber />
-						<Email />
-						<Pass />
-						<Button className={classes.submit}
-							type='submit'
-							variant='contained'
-							color='primary'
-							fullWidth
-							size="large"
-							disabled={disabled}>
-							Next
-						</Button>
-					</Box>
-				</form>
-			</FormProvider>
-		</MainLayout>
+		<>
+			<MainLayout>
+				<FormProvider {...methods} >
+					<form onSubmit={methods.handleSubmit(onSubmit)}>
+						<Box className={classes.form}>
+							<FirstName />
+							<LastName />
+							<PhoneNumber />
+							<Email />
+							<Pass />
+							<Button className={classes.submit}
+								type='submit'
+								variant='contained'
+								color='primary'
+								fullWidth
+								size="large"
+								disabled={disabled}>
+								Next
+							</Button>
+						</Box>
+					</form>
+				</FormProvider>
+			</MainLayout>
+			<Backdrop className={classes.backdr} open={backdrop}>
+				<Loader />
+			</Backdrop>
+		</>
 	);
 };
 
