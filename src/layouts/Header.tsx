@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
 		'& svg': {
 			height: '30px',
 		}
-	}
+	},
 }));
 
 const Header = (): React.ReactElement => {
@@ -21,7 +21,7 @@ const Header = (): React.ReactElement => {
 
 	return (
 		<AppBar color='transparent' position='static' className={classes.header}>
-			<Link to='/'>
+			<Link to='/' >
 				<Logo />
 			</Link>
 		</AppBar>
