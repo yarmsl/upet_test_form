@@ -55,11 +55,44 @@ const countries = [
 	{ id: 2, brevis: 'AUS', icon: <AUSflagIcon />, code: '+61', title: 'Australia', phoneformat: phoneFormatAUS, count: 12 }
 ];
 
+//reducer refactoring
+interface countryInterface {
+	id: number;
+	brevis: string;
+	icon: JSX.Element;
+	code: string;
+	title: string;
+	phoneformat: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => string;
+	count: number;
+}
+
+// const initState = { id: 1, brevis: 'USA', icon: <USAflagIcon />, code: '+1', title: 'United States', phoneformat: phoneFormatUSA, count: 14 };
+
+// const reducer = (state: countryInterface, country: countryInterface): countryInterface | undefined => {
+// 	switch (country.brevis) {
+// 	case 'USA':
+// 		return { id: 1, brevis: 'USA', icon: <USAflagIcon />, code: '+1', title: 'United States', phoneformat: phoneFormatUSA, count: 14 };
+// 	case 'AUS':
+// 		return { id: 2, brevis: 'AUS', icon: <AUSflagIcon />, code: '+61', title: 'Australia', phoneformat: phoneFormatAUS, count: 12 };
+// 	}
+// };
+//
+
 const PhoneNumber = (): React.ReactElement => {
 	const [country, setCountry] = useState(1);
 	const [opened, setOpened] = useState(false);
 	const classes = useStyles();
 	const methods = useFormContext();
+
+	// const [state , dispatch] = useReducer(reducer, initState: {
+	// 	id: 1,
+	// 	brevis: 'USA', 
+	// 	icon: <USAflagIcon/>, 
+	// 	code: '+1', 
+	// 	title: 'United States', 
+	// 	phoneformat: phoneFormatUSA, 
+	// 	count: 14
+	// });
 
 	useEffect(() => {
 		if (methods.watch('phoneNumber')?.length > 0) {
