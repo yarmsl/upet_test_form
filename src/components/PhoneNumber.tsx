@@ -66,16 +66,22 @@ interface countryInterface {
 	count: number;
 }
 
-// const initState = { id: 1, brevis: 'USA', icon: <USAflagIcon />, code: '+1', title: 'United States', phoneformat: phoneFormatUSA, count: 14 };
+interface ActionInterface {
+   type: string;
+}
 
-// const reducer = (state: countryInterface, country: countryInterface): countryInterface | undefined => {
-// 	switch (country.brevis) {
-// 	case 'USA':
-// 		return { id: 1, brevis: 'USA', icon: <USAflagIcon />, code: '+1', title: 'United States', phoneformat: phoneFormatUSA, count: 14 };
-// 	case 'AUS':
-// 		return { id: 2, brevis: 'AUS', icon: <AUSflagIcon />, code: '+61', title: 'Australia', phoneformat: phoneFormatAUS, count: 12 };
-// 	}
-// };
+const initState = { id: 1, brevis: 'USA', icon: <USAflagIcon />, code: '+1', title: 'United States', phoneformat: phoneFormatUSA, count: 14 };
+
+const reducer = (state: countryInterface, action: ActionInterface) => {
+	switch (action.type) {
+	case 'USA':
+		return { id: 1, brevis: 'USA', icon: <USAflagIcon />, code: '+1', title: 'United States', phoneformat: phoneFormatUSA, count: 14 };
+	case 'AUS':
+		return { id: 2, brevis: 'AUS', icon: <AUSflagIcon />, code: '+61', title: 'Australia', phoneformat: phoneFormatAUS, count: 12 };
+	default: 
+		return { id: 1, brevis: 'USA', icon: <USAflagIcon />, code: '+1', title: 'United States', phoneformat: phoneFormatUSA, count: 14 };
+	}
+};
 //
 
 const PhoneNumber = (): React.ReactElement => {
@@ -84,17 +90,10 @@ const PhoneNumber = (): React.ReactElement => {
 	const classes = useStyles();
 	const methods = useFormContext();
 
-	// const [state , dispatch] = useReducer(reducer, initState: {
-	// 	id: 1,
-	// 	brevis: 'USA', 
-	// 	icon: <USAflagIcon/>, 
-	// 	code: '+1', 
-	// 	title: 'United States', 
-	// 	phoneformat: phoneFormatUSA, 
-	// 	count: 14
-	// });
+	const [state , dispatch] = useReducer(reducer, initState);
 
 	useEffect(() => {
+		console.log(state);
 		if (methods.watch('phoneNumber')?.length > 0) {
 			methods.trigger('phoneNumber');
 		}
