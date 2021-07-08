@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Box, Button, Dialog, DialogActions, DialogTitle, IconButton, makeStyles, TextField } from '@material-ui/core';
-import { USAflagIcon, AUSflagIcon } from '../UI/icons/FlagsIcons';
-import { phoneFormatUSA, phoneFormatAUS } from '../lib/services';
+import countries from '../lib/countries';
+import countryReducer from '../lib/countryReducer';
 
 const useStyles = makeStyles(() => ({
 	container: {
@@ -50,57 +50,24 @@ const useStyles = makeStyles(() => ({
 	}
 }));
 
-const countries = [
-	{ id: 1, brevis: 'USA', icon: <USAflagIcon />, code: '+1', title: 'United States', phoneformat: phoneFormatUSA, count: 14 },
-	{ id: 2, brevis: 'AUS', icon: <AUSflagIcon />, code: '+61', title: 'Australia', phoneformat: phoneFormatAUS, count: 12 }
-];
-
-//reducer refactoring
-interface countryInterface {
-	id: number;
-	brevis: string;
-	icon: JSX.Element;
-	code: string;
-	title: string;
-	phoneformat: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => string;
-	count: number;
-}
-
-interface ActionInterface {
-   type: string;
-}
-
-const initState = { id: 1, brevis: 'USA', icon: <USAflagIcon />, code: '+1', title: 'United States', phoneformat: phoneFormatUSA, count: 14 };
-
-const reducer = (state: countryInterface, action: ActionInterface) => {
-	switch (action.type) {
-	case 'USA':
-		return { id: 1, brevis: 'USA', icon: <USAflagIcon />, code: '+1', title: 'United States', phoneformat: phoneFormatUSA, count: 14 };
-	case 'AUS':
-		return { id: 2, brevis: 'AUS', icon: <AUSflagIcon />, code: '+61', title: 'Australia', phoneformat: phoneFormatAUS, count: 12 };
-	default: 
-		return { id: 1, brevis: 'USA', icon: <USAflagIcon />, code: '+1', title: 'United States', phoneformat: phoneFormatUSA, count: 14 };
-	}
-};
-//
-
 const PhoneNumber = (): React.ReactElement => {
-	const [country, setCountry] = useState(1);
 	const [opened, setOpened] = useState(false);
 	const classes = useStyles();
 	const methods = useFormContext();
-
-	const [state , dispatch] = useReducer(reducer, initState);
+	const [state , dispatch] = useReducer(countryReducer, {
+		icon: countries[0].icon, 
+		phoneformat: countries[0].phoneformat, 
+		count: countries[0].count 
+	});
 
 	useEffect(() => {
-		console.log(state);
 		if (methods.watch('phoneNumber')?.length > 0) {
 			methods.trigger('phoneNumber');
 		}
 	}, [methods.watch('phoneNumber')]);
 
-	const handleCountry = (id: number) => {
-		setCountry(id);
+	const handleCountry = (brevis: string) => {
+		dispatch({type: brevis});
 		methods.setValue('phoneNumber', '');
 		setOpened(!opened);
 	};
@@ -111,7 +78,7 @@ const PhoneNumber = (): React.ReactElement => {
 				<IconButton
 					className={classes.flagIcon}
 					onClick={() => setOpened(!opened)}>
-					{countries[country - 1].icon}
+					{state.icon}
 				</IconButton>
 				<Controller
 					name="phoneNumber"
@@ -129,13 +96,13 @@ const PhoneNumber = (): React.ReactElement => {
 							fullWidth
 							autoComplete="on"
 							value={value}
-							onChange={e => onChange(countries[country - 1].phoneformat(e))}
+							onChange={e => onChange(state.phoneformat(e))}
 							error={!!error} helperText={error ? error.message : ''} />
 					)}
 					rules={{
 						required: 'Enter your phone number',
 						minLength: {
-							value: countries[country - 1].count,
+							value: state.count,
 							message: 'Not enough digits here'
 						}
 					}} />
@@ -148,7 +115,7 @@ const PhoneNumber = (): React.ReactElement => {
 							<Button
 								className={classes.selCou}
 								key={item.id}
-								onClick={() => handleCountry(item.id)}
+								onClick={() => handleCountry(item.brevis)}
 								fullWidth>
 								<Box className={classes.selFlag}>{item.icon}</Box>
 								<Box>{item.code} - {item.title}</Box>
