@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import { Backdrop, Box, Button, makeStyles } from '@material-ui/core';
@@ -10,6 +10,7 @@ import Email from '../components/Email';
 import Pass from '../components/Pass';
 import Loader from '../UI/icons/Loader';
 import axios from 'axios';
+import countries, {CountryCTX} from '../lib/countries';
 
 interface dataForm {
 	firstName: string;
@@ -75,26 +76,28 @@ const Form = (): React.ReactElement => {
 	return (
 		<>
 			<MainLayout>
-				<FormProvider {...methods} >
-					<form onSubmit={methods.handleSubmit(onSubmit)}>
-						<Box className={classes.form}>
-							<FirstName />
-							<LastName />
-							<PhoneNumber />
-							<Email />
-							<Pass />
-							<Button className={classes.submit}
-								type='submit'
-								variant='contained'
-								color='primary'
-								fullWidth
-								size="large"
-								disabled={disabled}>
-								Next
-							</Button>
-						</Box>
-					</form>
-				</FormProvider>
+				<CountryCTX.Provider value={countries[1]}>
+					<FormProvider {...methods} >
+						<form onSubmit={methods.handleSubmit(onSubmit)}>
+							<Box className={classes.form}>
+								<FirstName />
+								<LastName />
+								<PhoneNumber />
+								<Email />
+								<Pass />
+								<Button className={classes.submit}
+									type='submit'
+									variant='contained'
+									color='primary'
+									fullWidth
+									size="large"
+									disabled={disabled}>
+									Next
+								</Button>
+							</Box>
+						</form>
+					</FormProvider>
+				</CountryCTX.Provider>
 			</MainLayout>
 			<Backdrop className={classes.backdr} open={backdrop}>
 				<Loader />
@@ -102,5 +105,4 @@ const Form = (): React.ReactElement => {
 		</>
 	);
 };
-
 export default Form;

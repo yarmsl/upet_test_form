@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, useContext } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Box, Button, Dialog, DialogActions, DialogTitle, IconButton, makeStyles, TextField } from '@material-ui/core';
 import countries from '../lib/countries';
 import countryReducer from '../lib/countryReducer';
+import {CountryCTX} from '../lib/countries';
 
 const useStyles = makeStyles(() => ({
 	container: {
@@ -54,6 +55,8 @@ const PhoneNumber = (): React.ReactElement => {
 	const [opened, setOpened] = useState(false);
 	const classes = useStyles();
 	const methods = useFormContext();
+	const test = useContext(CountryCTX);
+	console.log(test);
 	const [state , dispatch] = useReducer(countryReducer, {
 		icon: countries[0].icon, 
 		phoneformat: countries[0].phoneformat, 
