@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import { Backdrop, Box, Button, makeStyles } from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
+import { dataForm } from '../lib/interfaces';
 import FirstName from '../components/FirstName';
 import LastName from '../components/LastName';
 import PhoneNumber from '../components/PhoneNumber';
@@ -10,14 +11,6 @@ import Email from '../components/Email';
 import Pass from '../components/Pass';
 import Loader from '../UI/icons/Loader';
 import axios from 'axios';
-
-interface dataForm {
-	firstName: string;
-	secondName: string;
-	phoneNumber: string;
-	email: string;
-	pass: string;
-}
 
 const useStyles = makeStyles(() => ({
 	form: {
@@ -102,5 +95,4 @@ const Form = (): React.ReactElement => {
 		</>
 	);
 };
-
 export default Form;

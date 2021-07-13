@@ -8,7 +8,6 @@ const useStyles = makeStyles(() => ({
 	}
 }));
 
-
 const Email = (): React.ReactElement => {
 
 	const classes = useStyles();
