@@ -1,4 +1,4 @@
 import {createContext} from 'react';
 import { context } from './interfaces';
 
-export const CountryContext = createContext<Partial<context>>({});
+export const CountryContext = createContext({} as context);

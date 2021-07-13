@@ -38,7 +38,6 @@ const Confirm = (): React.ReactElement => {
 	const classes = useStyles();
 
 	useEffect(() => {
-		console.log('dd');
 		const getData = async () => {
 			const res = await axios.get('https://60e02dae6b689e001788c959.mockapi.io/api/request/appeals');
 			if (res.statusText === 'OK') {

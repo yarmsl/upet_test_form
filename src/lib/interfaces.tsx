@@ -18,8 +18,8 @@ interface dataForm {
 
 interface context {
 	opened: boolean;
-	handleCountry: (brevis: string) => void;
 	setOpened: (value: React.SetStateAction<boolean>) => void;
+	handleCountry: (brevis: string) => void;
 }
 
 export type {countryInterface, ActionInterface, dataForm, context};

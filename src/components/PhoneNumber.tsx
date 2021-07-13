@@ -26,30 +26,7 @@ const useStyles = makeStyles(() => ({
 		zIndex: 1000,
 		top: '5px',
 		left: '7px',
-	},
-	// dialTit: {
-	// 	paddingBottom: '8px',
-	// },
-	// dialAct: {
-	// 	display: 'flex',
-	// 	flexDirection: 'column',
-	// 	padding: '8px 15px'
-	// },
-	// selCou: {
-	// 	height: '24px',
-	// 	display: 'flex',
-	// 	margin: '8px',
-	// 	justifyContent: 'flex-start',
-	// 	alignItems: 'center',
-	// 	'& span': {
-	// 		textTransform: 'none',
-	// 	},
-	// },
-	// selFlag: {
-	// 	width: '27px',
-	// 	height: '20px',
-	// 	marginRight: '23px'
-	// }
+	}
 }));
 
 const PhoneNumber = (): React.ReactElement => {
@@ -74,13 +51,9 @@ const PhoneNumber = (): React.ReactElement => {
 		methods.setValue('phoneNumber', '');
 		setOpened(!opened);
 	};
-
-	const handleClose = () => {
-		setOpened(!opened);
-	};
 	
 	return (
-		<CountryContext.Provider value = {{opened, handleCountry, setOpened}}>
+		<CountryContext.Provider value = {{opened, setOpened, handleCountry }}>
 			<Box className={classes.container}>
 				<IconButton
 					className={classes.flagIcon}
@@ -115,23 +88,6 @@ const PhoneNumber = (): React.ReactElement => {
 					}} />
 			</Box>
 			<ChangeCountry />
-			{/* <Dialog open={opened} onClose={() => setOpened(!opened)}>
-				<DialogTitle className={classes.dialTit}>Select country</DialogTitle>
-				<DialogActions disableSpacing className={classes.dialAct}>
-					{countries.map(item => {
-						return (
-							<Button
-								className={classes.selCou}
-								key={item.id}
-								onClick={() => handleCountry(item.brevis)}
-								fullWidth>
-								<Box className={classes.selFlag}>{item.icon}</Box>
-								<Box>{item.code} - {item.title}</Box>
-							</Button>
-						);
-					})}
-				</DialogActions>
-			</Dialog> */}
 		</CountryContext.Provider>
 	);
 };
