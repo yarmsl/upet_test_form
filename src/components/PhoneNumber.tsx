@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useReducer, useContext } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import { Box, Button, Dialog, DialogActions, DialogTitle, IconButton, makeStyles, TextField } from '@material-ui/core';
+import { Box, IconButton, makeStyles, TextField } from '@material-ui/core';
 import countries from '../lib/countries';
 import countryReducer from '../lib/countryReducer';
-import {CountryCTX} from '../lib/countries';
+import ChangeCountry from './modals/ChangeCountry';
+import { CountryContext } from '../lib/countryContext';
 
 const useStyles = makeStyles(() => ({
 	container: {
@@ -26,43 +27,42 @@ const useStyles = makeStyles(() => ({
 		top: '5px',
 		left: '7px',
 	},
-	dialTit: {
-		paddingBottom: '8px',
-	},
-	dialAct: {
-		display: 'flex',
-		flexDirection: 'column',
-		padding: '8px 15px'
-	},
-	selCou: {
-		height: '24px',
-		display: 'flex',
-		margin: '8px',
-		justifyContent: 'flex-start',
-		alignItems: 'center',
-		'& span': {
-			textTransform: 'none',
-		},
-	},
-	selFlag: {
-		width: '27px',
-		height: '20px',
-		marginRight: '23px'
-	}
+	// dialTit: {
+	// 	paddingBottom: '8px',
+	// },
+	// dialAct: {
+	// 	display: 'flex',
+	// 	flexDirection: 'column',
+	// 	padding: '8px 15px'
+	// },
+	// selCou: {
+	// 	height: '24px',
+	// 	display: 'flex',
+	// 	margin: '8px',
+	// 	justifyContent: 'flex-start',
+	// 	alignItems: 'center',
+	// 	'& span': {
+	// 		textTransform: 'none',
+	// 	},
+	// },
+	// selFlag: {
+	// 	width: '27px',
+	// 	height: '20px',
+	// 	marginRight: '23px'
+	// }
 }));
 
 const PhoneNumber = (): React.ReactElement => {
 	const [opened, setOpened] = useState(false);
 	const classes = useStyles();
 	const methods = useFormContext();
-	const test = useContext(CountryCTX);
-	console.log(test);
+
 	const [state , dispatch] = useReducer(countryReducer, {
 		icon: countries[0].icon, 
 		phoneformat: countries[0].phoneformat, 
 		count: countries[0].count 
 	});
-
+	
 	useEffect(() => {
 		if (methods.watch('phoneNumber')?.length > 0) {
 			methods.trigger('phoneNumber');
@@ -75,8 +75,12 @@ const PhoneNumber = (): React.ReactElement => {
 		setOpened(!opened);
 	};
 
+	const handleClose = () => {
+		setOpened(!opened);
+	};
+	
 	return (
-		<>
+		<CountryContext.Provider value = {{opened, handleCountry, setOpened}}>
 			<Box className={classes.container}>
 				<IconButton
 					className={classes.flagIcon}
@@ -110,7 +114,8 @@ const PhoneNumber = (): React.ReactElement => {
 						}
 					}} />
 			</Box>
-			<Dialog open={opened} onClose={() => setOpened(!opened)}>
+			<ChangeCountry />
+			{/* <Dialog open={opened} onClose={() => setOpened(!opened)}>
 				<DialogTitle className={classes.dialTit}>Select country</DialogTitle>
 				<DialogActions disableSpacing className={classes.dialAct}>
 					{countries.map(item => {
@@ -126,8 +131,8 @@ const PhoneNumber = (): React.ReactElement => {
 						);
 					})}
 				</DialogActions>
-			</Dialog>
-		</>
+			</Dialog> */}
+		</CountryContext.Provider>
 	);
 };
 
